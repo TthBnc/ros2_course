@@ -3,7 +3,7 @@
 ## About
 
 Something about the package.
-Test
+Turtlebot
 
 ## Usage
 
