@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'hello = ros2_course.hello:main'
+            'hello = ros2_course.hello:main',
+            'sensors = ros2_course.sensor_reader:main',
         ],
     },
 )
