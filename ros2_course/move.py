@@ -14,8 +14,8 @@ class MoveToXY(Node):
         self.destination_x_ = 0.0
         self.destination_y_ = 0.0
         self.threshold_distance_ = 0.1
-        self.max_linear_velocity_ = 0.2
-        self.max_angular_velocity_ = 1.5
+        self.max_linear_velocity_ = 0.1
+        self.max_angular_velocity_ = 0.5
 
     def set_destination(self, x, y):
         self.destination_x_ = x
@@ -54,7 +54,7 @@ class MoveToXY(Node):
 def main():
     rclpy.init()
     node = MoveToXY()
-    node.set_destination(2.0, 10.0)
+    node.set_destination(0.0, 10.0)
     node.run()
     rclpy.shutdown()
 

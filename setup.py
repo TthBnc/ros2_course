@@ -23,6 +23,7 @@ setup(
             'hello = ros2_course.hello:main',
             'sensors = ros2_course.sensor_reader:main',
             'moveto = ros2_course.move:main',
+            'controller = ros2_course.turtlebot3_controller:main',
         ],
     },
 )
