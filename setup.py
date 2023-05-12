@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'hello = ros2_course.hello:main',
             'sensors = ros2_course.sensor_reader:main',
+            'moveto = ros2_course.move:main',
         ],
     },
 )
