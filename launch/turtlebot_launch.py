@@ -8,10 +8,10 @@ def generate_launch_description():
             namespace='turtlebot3',
             executable='controller',
             name='controller',
-            #remappings=[
-            #    ('/turtle1/pose', '/turtlesim1/turtle1/pose'),
-            #    ('/turle1/cmd_vel', '/turtlesim1/turtle1/cmd_vel'),
-            #]
+            remappings=[
+                ('/turtlebot3/odom', '/odom'),
+                ('/turtlebot3/cmd_vel', '/cmd_vel'),
+            ]
         )
     ])
 

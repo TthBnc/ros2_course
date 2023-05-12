@@ -17,11 +17,11 @@ class Turtlebot3Controller(Node):
         self.pose = None
         self.subscription = self.create_subscription(
             Odometry,
-            '/odom',
+            '/turtlebot3/odom',
             self.cb_pose,
             10)
 
-        self.twist_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.twist_pub = self.create_publisher(Twist, '/turtlebot3/cmd_vel', 10)
 
     def cb_pose(self, msg):
         self.pose = msg.pose.pose
@@ -86,7 +86,7 @@ class Turtlebot3Controller(Node):
         # Publish msg while the calculated time is up
         while (self.get_clock().now() < when) and rclpy.ok():
             self.twist_pub.publish(vel_msg)
-            print(f'get clock: {self.get_clock().now()} |||||||||| when: {when}')
+            #print(f'get clock: {self.get_clock().now()} |||||||||| when: {when}')
             time.sleep(0.1)
             #loop_rate.sleep()
 
@@ -141,13 +141,13 @@ class Turtlebot3Controller(Node):
 def main(args=None):
     rclpy.init(args=args)
     tc = Turtlebot3Controller()
-    tc.turn(90.0)
-    tc.turn(0.0)
+    #tc.turn(90.0)
+    #tc.turn(0.0)
     #tc.go_straight(1.0,4.0)
 
     #tc.draw_poly(1.0, 90.0, 6, 3.0)
 
-    #tc.go_to(-1.5, -0.5)
+    tc.go_to(-1.5, -0.5)
     #tc.go_to(-2, 0)
     #tc.go_to(3, 4)
     #tc.go_to(6, 2)
