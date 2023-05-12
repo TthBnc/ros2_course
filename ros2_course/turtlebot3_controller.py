@@ -3,6 +3,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist, Pose
 from nav_msgs.msg import Odometry
+import time
 
 
 class Turtlebot3Controller(Node):
@@ -23,9 +24,10 @@ class Turtlebot3Controller(Node):
         self.twist_pub = self.create_publisher(Twist, '/cmd_vel', 10)
 
     def cb_pose(self, msg):
-        self.pose = msg.pose.pose.position
+        self.pose = msg.pose.pose
 
     def go_straight(self, distance):
+        print('inside speed')
         speed = self.get_parameter('speed').get_parameter_value().double_value
         vel_msg = Twist()
         if distance > 0:
@@ -84,11 +86,15 @@ class Turtlebot3Controller(Node):
         # Publish msg while the calculated time is up
         while (self.get_clock().now() < when) and rclpy.ok():
             self.twist_pub.publish(vel_msg)
-            loop_rate.sleep()
+            #print(f'get clock: {self.get_clock().now()} |||||||||| when: {when}')
+            time.sleep(0.1)
+            #loop_rate.sleep()
 
         # Set velocity to 0
         vel_msg.angular.z = 0.0
+        print('before publish')
         self.twist_pub.publish(vel_msg)
+        print('after publis')
 
 
     def draw_square(self, a):
@@ -110,11 +116,18 @@ class Turtlebot3Controller(Node):
             self.get_logger().info('Waiting for pose...')
             rclpy.spin_once(self)
 
-        rclpy.spin_once(self)
+        x0 = self.pose.position.x
+        y0 = self.pose.position.y
+        # theta_0 = self.pose.theta
 
-        x0 = self.pose.x
-        y0 = self.pose.y
-        theta_0 = self.pose.theta
+        w = self.pose.orientation.w
+        x = self.pose.orientation.x
+        y = self.pose.orientation.y
+        z = self.pose.orientation.z
+
+        sinr_cosp = 2 * (w * x + y * z)
+        cosr_cosp = 1 - 2 * (x * x + y * y)
+        theta_0 = math.atan2(sinr_cosp, cosr_cosp) #roll
 
         print("Going to (", x, ", ", y, ")")
         angle = (((math.atan2(y - y0, x - x0) - theta_0) * 180) / math.pi)
@@ -133,7 +146,7 @@ def main(args=None):
 
     #tc.draw_poly(1.0, 90.0, 6, 3.0)
 
-    tc.go_to(2, 20)
+    tc.go_to(2, 10)
     #tc.go_to(2, 2)
     #tc.go_to(3, 4)
     #tc.go_to(6, 2)
