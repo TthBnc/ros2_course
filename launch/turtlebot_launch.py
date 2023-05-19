@@ -11,6 +11,8 @@ def generate_launch_description():
             remappings=[
                 ('/turtlebot3/odom', '/odom'),
                 ('/turtlebot3/cmd_vel', '/cmd_vel'),
+                ('/turtlebot3/scan', '/scan'),
+                ('/turtlebot3/imu', '/imu'),
             ]
         )
     ])

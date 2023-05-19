@@ -11,6 +11,26 @@ class Turtlebot3Controller(Node):
     def __init__(self):
         super().__init__('turtlebot3_controller')
 
+        self.laser = None
+        self.imu = None
+
+        self.laser_subscriber = self.create_subscription(
+            LaserScan,
+            '/turtlebot3/scan',
+            self.laser_callback,
+            10)
+        self.imu_subscriber = self.create_subscription(
+            Imu,
+            '/turtlebot3/imu',
+            self.imu_callback,
+            10)
+
+    def laser_callback(self, msg):
+        self.laser = msg
+
+    def imu_callback(self, msg):
+        self.imu = msg
+
         self.declare_parameter('speed', 0.2)
         self.declare_parameter('omega', 1.0)
 

@@ -1,5 +1,3 @@
-# ros2_course
-
 ## About
 
 Something about the package.
