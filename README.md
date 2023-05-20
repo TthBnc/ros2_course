@@ -2,6 +2,15 @@
 
 This project utilizes the Turtlebot3 Burger and Gazebo for visualization. The base file used for this project is the provided `turtlesim_controller.py`, which has been modified and renamed to `turtlebot3_controller.py`. The changes include remappings and calculations of angles from orientation w,x,y, and z.
 
+## Viewing the Robot
+
+To view the robot, Gazebo needs to be launched first with the following commands:
+
+```
+export TURTLEBOT3_MODEL=burger
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+
 ## Launching the Project
 
 The project can be launched using the following command:
@@ -11,15 +20,6 @@ ros2 launch ros2_course turtlebot_launch.py
 ```
 
 A launch file has been provided for convenience.
-
-## Viewing the Robot
-
-To view the robot, Gazebo needs to be launched first with the following commands:
-
-```
-export TURTLEBOT3_MODEL=burger
-ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-```
 
 ## For First Time Users
 
