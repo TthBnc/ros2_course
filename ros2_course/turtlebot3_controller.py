@@ -25,12 +25,6 @@ class Turtlebot3Controller(Node):
             self.imu_callback,
             10)
 
-    def laser_callback(self, msg):
-        self.laser = msg
-
-    def imu_callback(self, msg):
-        self.imu = msg
-
         self.declare_parameter('speed', 0.2)
         self.declare_parameter('omega', 1.0)
 
@@ -45,6 +39,12 @@ class Turtlebot3Controller(Node):
 
     def cb_pose(self, msg):
         self.pose = msg.pose.pose
+        
+    def laser_callback(self, msg):
+        self.laser = msg
+
+    def imu_callback(self, msg):
+        self.imu = msg
 
     def go_straight(self, distance):
         print('inside speed')
