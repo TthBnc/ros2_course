@@ -7,7 +7,7 @@ This project utilizes the Turtlebot3 Burger and Gazebo for visualization. The ba
 The project can be launched using the following command:
 
 ```
-ros2 launch ros2_course turtlebot_launch
+ros2 launch ros2_course turtlebot_launch.py
 ```
 
 A launch file has been provided for convenience.
